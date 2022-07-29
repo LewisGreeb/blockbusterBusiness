@@ -1,8 +1,10 @@
 package com.sakila.lewis.blockbusterBusiness.Location.City;
 
+import com.sakila.lewis.blockbusterBusiness.Location.Address.Address;
 import com.sakila.lewis.blockbusterBusiness.Location.Country.Country;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="city")
@@ -18,6 +20,16 @@ public class City {
     private String city;
     @Column(name = "country_id")
     private int countryID;
+
+    // Linking attribute - country.
+    @ManyToOne
+    @JoinColumn(name = "country_id", insertable = false, updatable = false)
+    private Country country;
+
+    // Linking attribute - address.
+    @OneToMany
+    @JoinColumn(name = "address_id")
+    private Set<Address> addresses;
 
     // Default constructor.
     public City(){}
@@ -50,5 +62,13 @@ public class City {
 
     public void setCountry_id(int countryID) {
         this.countryID = countryID;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

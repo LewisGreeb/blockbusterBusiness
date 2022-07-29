@@ -1,6 +1,9 @@
 package com.sakila.lewis.blockbusterBusiness.Location.Country;
 
+import com.sakila.lewis.blockbusterBusiness.Location.City.City;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name="country")
@@ -14,6 +17,11 @@ public class Country {
 
     // Country attributes.
     private String country;
+
+    // Linking attribute - city.
+    @OneToMany
+    @JoinColumn(name = "country_id")
+    private Set<City> cities;
 
     // Default constructor.
     public Country(){}

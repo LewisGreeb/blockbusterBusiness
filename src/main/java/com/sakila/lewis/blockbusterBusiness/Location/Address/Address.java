@@ -1,6 +1,9 @@
 package com.sakila.lewis.blockbusterBusiness.Location.Address;
 
 
+import com.sakila.lewis.blockbusterBusiness.Location.City.City;
+import com.sakila.lewis.blockbusterBusiness.Location.Country.Country;
+
 import javax.persistence.*;
 import java.sql.Blob;
 
@@ -24,6 +27,11 @@ public class Address {
     private String phone;
 
     private byte[] location;
+
+    // Linking attribute - city.
+    @ManyToOne
+    @JoinColumn(name = "city_id", insertable = false, updatable = false)
+    private City city;
 
     // Default constructor.
     public Address(){}
@@ -91,5 +99,13 @@ public class Address {
 
     public void setLocation(byte[] location) {
         this.location = location;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }
