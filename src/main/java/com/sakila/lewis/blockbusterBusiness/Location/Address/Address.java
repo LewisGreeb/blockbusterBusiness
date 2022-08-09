@@ -3,6 +3,8 @@ package com.sakila.lewis.blockbusterBusiness.Location.Address;
 
 import com.sakila.lewis.blockbusterBusiness.Location.City.City;
 import com.sakila.lewis.blockbusterBusiness.Location.Country.Country;
+import com.sakila.lewis.blockbusterBusiness.Store.Staff.Staff;
+import com.sakila.lewis.blockbusterBusiness.Store.Store;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -32,6 +34,14 @@ public class Address {
     @ManyToOne
     @JoinColumn(name = "city_id", insertable = false, updatable = false)
     private City city;
+
+    // Linking attribute - store.
+    @OneToOne(mappedBy = "address")
+    private Store store;
+
+    // Linking attribute - staff.
+    @OneToOne(mappedBy = "address")
+    private Staff staff;
 
     // Default constructor.
     public Address(){}

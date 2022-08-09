@@ -28,7 +28,7 @@ public class City {
 
     // Linking attribute - address.
     @OneToMany
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "city_id")
     private Set<Address> addresses;
 
     // Default constructor.
